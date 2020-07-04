@@ -4,7 +4,7 @@
 
 > 매일 1시간 SwiftUI 100일 
 > 
-> https://www.hackingwithswift.com/100
+> https://www.hackingwithswift.com/100/swiftui
 
 ##### Rules
 
