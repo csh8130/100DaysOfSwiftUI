@@ -22,6 +22,9 @@ struct ContentView: View {
                     }
                     TextField("Enter your name", text: $name)
                 }
+                ForEach(0 ..< 100) {
+                    Text("Row \($0)")
+                }
             }
             .navigationBarTitle("SwiftUI")
         }
