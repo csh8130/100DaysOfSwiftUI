@@ -6,7 +6,7 @@
 > 
 > [hackingwithswift.com](https://www.hackingwithswift.com/100/swiftui)
 
-##### day1 ~ day16은 100DaysOfSwift과정과 동일 - https://github.com/csh8130/100DaysOfSwift
+##### day1 ~ day15는 [100DaysOfSwift](https://github.com/csh8130/100DaysOfSwift) 과정과 동일
 
 > | day | subject                                                                  | Note                                         |
 > |:---:|:------------------------------------------------------------------------ |:-------------------------------------------- |
