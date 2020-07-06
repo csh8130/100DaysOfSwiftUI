@@ -33,6 +33,7 @@ struct ContentView: View {
                     Text("$\(checkAmount)")
                 }
             }
+            .navigationBarTitle("WeSplit")
         }
     }
 }
