@@ -36,6 +36,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                .pickerStyle(SegmentedPickerStyle())
                 
                 Section {
                     Text("$\(checkAmount)")
