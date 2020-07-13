@@ -42,6 +42,10 @@ struct ContentView: View {
                     }
                 }
                 
+                Text("your current score : \(score)")
+                .foregroundColor(.white)
+                .fontWeight(.black)
+                
                 Spacer()
             }
         }
