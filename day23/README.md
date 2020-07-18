@@ -132,8 +132,6 @@ struct ContentView: View {
 
 userRedText가 true이면 빨강 false이면 파랑 배경색이 됩니다. 또한 SwiftUI는 @State 에서 변경을 즉시 감지하고 속성을 변경하기때문에 색상이 즉시 변경 됩니다.
 
-
-
 ```swift
 var body: some View {
     if self.useRedText {
@@ -146,8 +144,6 @@ var body: some View {
 ```
 
 예를들어 이런 코드는 불가능합니다.
-
-
 
 some View는 어떠한 한가지 타입을 의미한다고 바로 이전에 이야기 했었습니다.
 
@@ -166,3 +162,49 @@ var body: some View {
 ```
 
 return 되는 형태를 일치시키면 사용이 가능합니다.
+
+
+
+### # Environment modifiers
+
+동일한 modifier를 여러 View에 동시에 적용하기 위한 방법을 제공합니다.
+
+```swift
+VStack {
+    Text("Gryffindor")
+    Text("Hufflepuff")
+    Text("Ravenclaw")
+    Text("Slytherin")
+}
+.font(.title)
+```
+
+이것을 Environment modifier라고 하며 만약 하위뷰에 동일한 modifier를 사용하는 경우 하위뷰에서 적용되는것이 우선됩니다.
+
+```swift
+VStack {
+    Text("Gryffindor")
+        .font(.largeTitle)
+    Text("Hufflepuff")
+    Text("Ravenclaw")
+    Text("Slytherin")
+}
+.font(.title)
+```
+
+4개의 View중 한개에만 largeTitle font가 적용됩니다
+
+```swift
+VStack {
+    Text("Gryffindor")
+        .blur(radius: 0)
+    Text("Hufflepuff")
+    Text("Ravenclaw")
+    Text("Slytherin")
+}
+.blur(radius: 5)
+```
+
+blur 는 동일한 방식을 적용 할 수 없습니다. Environment modifier가 아니기 때문입니다.
+
+어떤 modifier가 Environment modifier인지 아닌지 미리 구분하는 방법은 특별히 없습니다. 직접 코드를 실험해서 알아내는방법을 사용합니다.
