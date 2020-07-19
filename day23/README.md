@@ -208,3 +208,36 @@ VStack {
 blur 는 동일한 방식을 적용 할 수 없습니다. Environment modifier가 아니기 때문입니다.
 
 어떤 modifier가 Environment modifier인지 아닌지 미리 구분하는 방법은 특별히 없습니다. 직접 코드를 실험해서 알아내는방법을 사용합니다.
+
+### # Views as properties
+
+복잡한 구조를 정리하기위해 뷰를 프로퍼티로 만들 수 있습니다.
+
+```swift
+struct ContentView: View {
+    let motto1 = Text("Draco dormiens")
+    let motto2 = Text("nunquam titillandus")
+
+    var body: some View {
+        VStack {
+            motto1
+            motto2
+        }
+    }
+}
+```
+
+```swift
+VStack {
+    motto1
+        .foregroundColor(.red)
+    motto2
+        .foregroundColor(.blue)
+}
+```
+
+modifier또한 사용 가능합니다.
+
+뷰를 프로퍼티로 만들면 코드를 명확하게 하는데 도움이됩니다. 반복을 피할 뿐만아니라 body에서 한번 더 수정 할 수 있습니다.
+
+하지만 프로퍼티로 다른 프로퍼티를 참조하는 TextField를 생성할 수 없습니다. 왜냐하면 프로퍼티가 생성되는 시점에 또다른 프로퍼티는 아직 생성되지 않았을 수 있기때문에 프로퍼티간에 참조가 불가능합니다.
