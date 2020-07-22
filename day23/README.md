@@ -293,5 +293,10 @@ struct ContentView: View {
 물론 일부 modifier만 공통적으로 적용하고 일부는 다르게 적용 할 수 있다.
 
 ```swift
-
+VStack(spacing: 10) {
+    CapsuleText(text: "First")
+        .foregroundColor(.white)
+    CapsuleText(text: "Second")
+        .foregroundColor(.yellow)
+}
 ```
