@@ -163,8 +163,6 @@ var body: some View {
 
 return 되는 형태를 일치시키면 사용이 가능합니다.
 
-
-
 ### # Environment modifiers
 
 동일한 modifier를 여러 View에 동시에 적용하기 위한 방법을 제공합니다.
@@ -241,3 +239,59 @@ modifier또한 사용 가능합니다.
 뷰를 프로퍼티로 만들면 코드를 명확하게 하는데 도움이됩니다. 반복을 피할 뿐만아니라 body에서 한번 더 수정 할 수 있습니다.
 
 하지만 프로퍼티로 다른 프로퍼티를 참조하는 TextField를 생성할 수 없습니다. 왜냐하면 프로퍼티가 생성되는 시점에 또다른 프로퍼티는 아직 생성되지 않았을 수 있기때문에 프로퍼티간에 참조가 불가능합니다.
+
+### #View composition
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack(spacing: 10) {
+            Text("First")
+                .font(.largeTitle)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .clipShape(Capsule())
+
+            Text("Second")
+                .font(.largeTitle)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .clipShape(Capsule())
+        }
+    }
+}
+```
+
+이와같이 복잡하지만 같은 구조의 뷰를 더 간단하게 만들 수 있다.
+
+```swift
+struct CapsuleText: View {
+    var text: String
+
+    var body: some View {
+        Text(text)
+            .font(.largeTitle)
+            .padding()
+            .foregroundColor(.white)
+            .background(Color.blue)
+            .clipShape(Capsule())
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        VStack(spacing: 10) {
+            CapsuleText(text: "First")
+            CapsuleText(text: "Second")
+        }
+    }
+}
+```
+
+물론 일부 modifier만 공통적으로 적용하고 일부는 다르게 적용 할 수 있다.
+
+```swift
+
+```
