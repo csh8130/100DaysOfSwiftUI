@@ -300,3 +300,29 @@ VStack(spacing: 10) {
         .foregroundColor(.yellow)
 }
 ```
+
+### #Custom modifiers
+
+사용자 지정 modifier를 만드는것이 가능하다
+
+```swift
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .padding()
+            .background(Color.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+```
+
+```swift
+Text("Hello World")
+    .modifier(Title())
+```
+
+```swift
+
+```
