@@ -303,7 +303,9 @@ VStack(spacing: 10) {
 
 ### #Custom modifiers
 
-사용자 지정 modifier를 만드는것이 가능하다
+지금까지는 내장 modifier를 사용하는 법에 대해 알아보았다. 우리는 직접 custom modifier를 만드는것이 가능하다.
+
+이를 위해서는 먼저 내가 만들 modifier가 어떻게 동작할지 지정할 구조체를 정의해야 한다.
 
 ```swift
 struct Title: ViewModifier {
@@ -318,11 +320,61 @@ struct Title: ViewModifier {
 }
 ```
 
+Title이라는 이름의 구조체를 만들었으며 modifier로 사용 할 때는 아래와 같이 사용한다.
+
 ```swift
 Text("Hello World")
     .modifier(Title())
 ```
 
-```swift
+.modifier() 안에 구조체를 넣어서 사용해야 하고 이는 지금까지 사용하던 modifier와 차이가 크다.
 
+더 쉽게 사용하기위해 아래와같이 wrapping해서 사용하는것이 현명하다.
+
+```swift
+extension View {
+    func titleStyle() -> some View {
+        self.modifier(Title())
+    }
+}
+```
+
+이제 드디어 다른 modifier들 처럼 사용 할 수 있다.
+
+```swift
+Text("Hello World")
+    .titleStyle()
+```
+
+custom modifier는 단순히 다른 modifier 여러개를 한번에 적용하는 정도가 아닌 뷰구조를 생성하는 작업도 가능하다. 예를들어 아래와 같이 다른 뷰들을 추가하는 modifier를 만드는것도 가능하다.
+
+```swift
+struct Watermark: ViewModifier {
+    var text: String
+
+    func body(content: Content) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            content
+            Text(text)
+                .font(.caption)
+                .foregroundColor(.white)
+                .padding(5)
+                .background(Color.black)
+        }
+    }
+}
+
+extension View {
+    func watermarked(with text: String) -> some View {
+        self.modifier(Watermark(text: text))
+    }
+}
+```
+
+이 modifier를 사용한다면 워터마크를 추가할 수 있게 된다.
+
+```swift
+Color.blue
+    .frame(width: 300, height: 200)
+    .watermarked(with: "Hacking with Swift")
 ```
