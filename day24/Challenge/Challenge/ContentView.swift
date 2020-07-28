@@ -10,12 +10,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text("Hello, big blue title!")
+        .bigBlueTitleStyle()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+struct BitBlueTitle: ViewModifier {
+ func body(content: Content) -> some View {
+ content
+ .font(.largeTitle)
+ .foregroundColor(.white)
+ .padding()
+ .background(Color.blue)
+ .clipShape(RoundedRectangle(cornerRadius: 10))
+ }
+}
+
+extension View {
+ func bigBlueTitleStyle() -> some View {
+ self.modifier(BitBlueTitle())
+ }
 }
