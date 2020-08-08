@@ -9,8 +9,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    let states = ["Rock", "Paper", "Scissors"]
+    @State var isWin = false
+    @State var stateIndex = 0
+    
+    private func reset() {
+        isWin = Bool.random()
+        stateIndex = Int.random(in: 0..<states.count)
+    }
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            Text("\(isWin ? "win" : "lose")")
+            Text("computer : \(states[stateIndex])")
+            Button("reset") {
+                self.reset()
+            }
+        }
+        
+//        Text($stateIndex)
     }
 }
 
