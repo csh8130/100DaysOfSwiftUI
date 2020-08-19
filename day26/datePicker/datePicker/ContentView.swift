@@ -26,6 +26,24 @@ struct ContentView: View {
         //두번째 대안 - 라벨을 숨길수 있다
 //        DatePicker("Please enter a date", selection: $wakeUp)
 //        .labelsHidden()
+        
+        
+        //시, 분만 입력받길 윈하는경우
+//        DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
+
+        
+        //stepper예제의 in: 처럼 범위의 제한을 거는 방법들
+        // when you create a new Date instance it will be set to the current date and time
+//        let now = Date()
+
+        // create a second Date instance set to one day in seconds from now
+//        let tomorrow = Date().addingTimeInterval(86400)
+
+        // create a range from those two
+//        let range = now ... tomorrow
+    
+        //현재보다 과거는 선택 불가능하게 하는 예제
+//    DatePicker("Please enter a date", selection: $wakeUp, in: Date()...)
     }
 }
 
